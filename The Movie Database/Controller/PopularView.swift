@@ -49,7 +49,6 @@ class PopularView: UIView {
         super.init(frame: .zero)
         setupUI()
         setupConstraints()
-
     }
     
     required init?(coder: NSCoder) {
@@ -57,7 +56,6 @@ class PopularView: UIView {
     }
     
     private func setupUI() {
-        backgroundColor = .black
         addSubview(segmentedControl)
         addSubview(tableView)
     }

@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct TVShow: Codable {
+    let id: Int
+    let name: String
+    let posterPath: String?
+    let overview: String
+    let firstAirDate: String
+    let voteAverage: Double
+}

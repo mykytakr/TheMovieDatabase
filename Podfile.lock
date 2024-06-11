@@ -1,0 +1,39 @@
+PODS:
+  - Realm (10.50.1):
+    - Realm/Headers (= 10.50.1)
+  - Realm/Headers (10.50.1)
+  - RealmSwift (10.50.1):
+    - Realm (= 10.50.1)
+  - SnapKit (5.7.1)
+  - youtube-ios-player-helper (1.0.4)
+
+DEPENDENCIES:
+  - RealmSwift
+  - SnapKit
+  - youtube-ios-player-helper (from `https://github.com/youtube/youtube-ios-player-helper.git`, branch `master`)
+
+SPEC REPOS:
+  trunk:
+    - Realm
+    - RealmSwift
+    - SnapKit
+
+EXTERNAL SOURCES:
+  youtube-ios-player-helper:
+    :branch: master
+    :git: https://github.com/youtube/youtube-ios-player-helper.git
+
+CHECKOUT OPTIONS:
+  youtube-ios-player-helper:
+    :commit: f57129cd4380ec0a74dd3a59da3270a1d653d59b
+    :git: https://github.com/youtube/youtube-ios-player-helper.git
+
+SPEC CHECKSUMS:
+  Realm: 36bc9fe2681d7cf234aa487e7990821c772206a2
+  RealmSwift: 84a370d3d4f191d327a9f8ade1f064a274f79847
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  youtube-ios-player-helper: e9b97535e816db3152179d84d999bc1807ecd689
+
+PODFILE CHECKSUM: 3906ff57fb767358eef5f0ecc56e3b041b8c6d38
+
+COCOAPODS: 1.15.2

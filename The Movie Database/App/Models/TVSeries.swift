@@ -5,6 +5,7 @@
 //  Created by NIKITA on 23.05.2024.
 //
 
+
 import Foundation
 
 struct TVSeries: Codable {
@@ -12,13 +13,20 @@ struct TVSeries: Codable {
     let name: String
     let overview: String
     let posterPath: String?
-    let genre: String
-    let releaseYear: Int
-    let rating: Double
-    let director: String
+    let genreIds: [Int]
+    let releaseDate: String?
+    let voteAverage: Double?
 
     enum CodingKeys: String, CodingKey {
-        case id, name, overview, genre, releaseYear = "release_year", rating, director
+        case id, name, overview
         case posterPath = "poster_path"
+        case genreIds = "genre_ids"
+        case releaseDate = "first_air_date"
+        case voteAverage = "vote_average"
     }
 }
+
+
+
+
+

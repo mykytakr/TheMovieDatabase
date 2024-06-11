@@ -22,6 +22,8 @@ class SeriesCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
+        contentView.backgroundColor = .black
+        backgroundColor = .black
         NotificationCenter.default.addObserver(self, selector: #selector(updateWatchLaterButton), name: NSNotification.Name("WatchLaterUpdated"), object: nil)
     }
 
@@ -42,85 +44,115 @@ class SeriesCell: UITableViewCell {
         contentView.addSubview(ratingLabel)
         contentView.addSubview(watchLaterButton)
 
-        posterImageView.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        overviewLabel.translatesAutoresizingMaskIntoConstraints = false
-        genreLabel.translatesAutoresizingMaskIntoConstraints = false
-        yearLabel.translatesAutoresizingMaskIntoConstraints = false
-        ratingLabel.translatesAutoresizingMaskIntoConstraints = false
-        watchLaterButton.translatesAutoresizingMaskIntoConstraints = false
+        posterImageView.snp.makeConstraints { make in
+                    make.top.equalTo(contentView).offset(8)
+                    make.leading.equalTo(contentView).offset(8)
+                    make.width.equalTo(100)
+                    make.height.equalTo(150)
+                    make.bottom.lessThanOrEqualTo(contentView).offset(-8)
+                }
 
-        NSLayoutConstraint.activate([
-            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            posterImageView.widthAnchor.constraint(equalToConstant: 100),
-            posterImageView.heightAnchor.constraint(equalToConstant: 150),
-            posterImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8),
+                titleLabel.snp.makeConstraints { make in
+                    make.top.equalTo(contentView).offset(8)
+                    make.leading.equalTo(posterImageView.snp.trailing).offset(8)
+                    make.trailing.equalTo(watchLaterButton.snp.leading).offset(-8)
+                }
 
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            titleLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: watchLaterButton.leadingAnchor, constant: -8),
+                overviewLabel.snp.makeConstraints { make in
+                    make.top.equalTo(titleLabel.snp.bottom).offset(4)
+                    make.leading.equalTo(posterImageView.snp.trailing).offset(8)
+                    make.trailing.equalTo(contentView).offset(-8)
+                }
 
-            overviewLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-            overviewLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 8),
-            overviewLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+                genreLabel.snp.makeConstraints { make in
+                    make.top.equalTo(overviewLabel.snp.bottom).offset(4)
+                    make.leading.equalTo(posterImageView.snp.trailing).offset(8)
+                    make.trailing.equalTo(contentView).offset(-8)
+                }
 
-            genreLabel.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 4),
-            genreLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 8),
+                yearLabel.snp.makeConstraints { make in
+                    make.top.equalTo(genreLabel.snp.bottom).offset(4)
+                    make.leading.equalTo(posterImageView.snp.trailing).offset(8)
+                    make.trailing.equalTo(contentView).offset(-8)
+                }
 
-            yearLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 4),
-            yearLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 8),
+                ratingLabel.snp.makeConstraints { make in
+                    make.top.equalTo(yearLabel.snp.bottom).offset(4)
+                    make.leading.equalTo(posterImageView.snp.trailing).offset(8)
+                    make.trailing.equalTo(contentView).offset(-8)
+                }
 
-            ratingLabel.topAnchor.constraint(equalTo: yearLabel.bottomAnchor, constant: 4),
-            ratingLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 8),
-
-            watchLaterButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            watchLaterButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            watchLaterButton.widthAnchor.constraint(equalToConstant: 30),
-            watchLaterButton.heightAnchor.constraint(equalToConstant: 30)
-        ])
+                watchLaterButton.snp.makeConstraints { make in
+                    make.top.equalTo(contentView).offset(8)
+                    make.trailing.equalTo(contentView).offset(-8)
+                    make.width.equalTo(30)
+                    make.height.equalTo(30)
+                }
 
         titleLabel.numberOfLines = 1
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
-
+        titleLabel.textColor = .white
+        
         overviewLabel.numberOfLines = 3
-        overviewLabel.textColor = .gray
-
+        overviewLabel.textColor = .lightGray
+        
         genreLabel.numberOfLines = 1
-        genreLabel.textColor = .darkGray
+        genreLabel.textColor = .gray
 
         yearLabel.numberOfLines = 1
-        yearLabel.textColor = .darkGray
+        yearLabel.textColor = .gray
 
         ratingLabel.numberOfLines = 1
-        ratingLabel.textColor = .darkGray
+        ratingLabel.textColor = .gray
 
-        watchLaterButton.setImage(UIImage(systemName: "clock"), for: .normal)
         watchLaterButton.addTarget(self, action: #selector(toggleWatchLater), for: .touchUpInside)
+        updateWatchLaterButton()
+        let selectedBackgroundView = UIView()
+            selectedBackgroundView.backgroundColor = .black
+            self.selectedBackgroundView = selectedBackgroundView
     }
 
     func configure(with series: TVSeries, showWatchLaterButton: Bool = true) {
         self.series = series
-        titleLabel.text = series.name
-        overviewLabel.text = series.overview
-        genreLabel.text = NetworkService.shared.getGenres(for: series.genreIds)
-        yearLabel.text = series.releaseDate?.split(separator: "-").first.map { String($0) } ?? "Unknown Year"
-        ratingLabel.text = series.voteAverage != nil ? "Rating: \(series.voteAverage!)/10" : "No Rating"
+        titleLabel.text = series.name.isEmpty ? "Title not available" : series.name
+        titleLabel.font = series.name.isEmpty ? UIFont.systemFont(ofSize: 14) : UIFont.boldSystemFont(ofSize: 18)
+        
+        overviewLabel.text = series.overview.isEmpty ? "Overview not available" : series.overview
+        overviewLabel.font = series.overview.isEmpty ? UIFont.systemFont(ofSize: 14) : UIFont.systemFont(ofSize: 16)
+        
+        let genres = NetworkService.shared.getGenres(for: series.genreIds)
+        genreLabel.text = genres.isEmpty ? "Genres not available" : "\(genres)"
+        genreLabel.font = genres.isEmpty ? UIFont.systemFont(ofSize: 14) : UIFont.systemFont(ofSize: 16)
+        
+        yearLabel.text = series.releaseDate?.split(separator: "-").first.map { String($0) } ?? "Release date not available"
+        yearLabel.font = (series.releaseDate?.isEmpty ?? true) ? UIFont.systemFont(ofSize: 14) : UIFont.systemFont(ofSize: 16)
+        
+        if let voteAverage = series.voteAverage {
+            ratingLabel.text = String(format: "%.2f/10", voteAverage)
+        } else {
+            ratingLabel.text = "Rating not available"
+        }
+        
+        ratingLabel.font = (series.voteAverage == nil) ? UIFont.systemFont(ofSize: 14) : UIFont.systemFont(ofSize: 16)
+        
         if let posterPath = series.posterPath {
             let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
             posterImageView.kf.setImage(with: url)
+        } else {
+            posterImageView.image = UIImage(systemName: "photo")
         }
+
         watchLaterButton.isHidden = !showWatchLaterButton
         updateWatchLaterButton()
     }
 
     @objc private func updateWatchLaterButton() {
         guard let series = series else { return }
-        if WatchLaterManager.shared.isSeriesInWatchLater(series) {
-            watchLaterButton.setImage(UIImage(systemName: "clock.fill"), for: .normal)
-        } else {
-            watchLaterButton.setImage(UIImage(systemName: "clock"), for: .normal)
-        }
+        let isInWatchLater = WatchLaterManager.shared.isSeriesInWatchLater(series)
+        let imageName = isInWatchLater ? "clock.fill" : "clock"
+        let imageColor: UIColor = isInWatchLater ? .white : .systemGray
+        watchLaterButton.setImage(UIImage(systemName: imageName), for: .normal)
+        watchLaterButton.tintColor = imageColor
     }
 
     @objc private func toggleWatchLater() {
@@ -128,7 +160,13 @@ class SeriesCell: UITableViewCell {
         if WatchLaterManager.shared.isSeriesInWatchLater(series) {
             WatchLaterManager.shared.removeSeriesFromWatchLater(series)
         } else {
-            WatchLaterManager.shared.addSeriesToWatchLater(series)
+            WatchLaterManager.shared.addSeriesToWatchLater(series, success: {
+                self.updateWatchLaterButton()
+                self.parentViewController?.showAlert(title: "Success", message: "\(series.name) has been added to Watch Later")
+            }, failure: {
+                self.parentViewController?.showAlert(title: "Failure", message: "Failed to add \(series.name) to Watch Later")
+            })
         }
+        updateWatchLaterButton()
     }
 }

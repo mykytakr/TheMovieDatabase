@@ -55,66 +55,65 @@ class MovieDetailController: UIViewController {
         contentView.addSubview(playerView)
         contentView.addSubview(noTrailerLabel)
         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        posterImageView.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        overviewLabel.translatesAutoresizingMaskIntoConstraints = false
-        genreLabel.translatesAutoresizingMaskIntoConstraints = false
-        yearLabel.translatesAutoresizingMaskIntoConstraints = false
-        ratingLabel.translatesAutoresizingMaskIntoConstraints = false
-        playerView.translatesAutoresizingMaskIntoConstraints = false
-        noTrailerLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
-            posterImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 16),
-            posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            posterImageView.widthAnchor.constraint(equalToConstant: 100),
-            posterImageView.heightAnchor.constraint(equalToConstant: 150),
-            
-            titleLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 16),
-            titleLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            overviewLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-            overviewLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 16),
-            overviewLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            genreLabel.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 16),
-            genreLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 16),
-            genreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            yearLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 16),
-            yearLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 16),
-            yearLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            ratingLabel.topAnchor.constraint(equalTo: yearLabel.bottomAnchor, constant: 16),
-            ratingLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 16),
-            ratingLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            playerView.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: 16),
-            playerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            playerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            playerView.heightAnchor.constraint(equalToConstant: 200),
-            
-            noTrailerLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: 16),
-            noTrailerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            noTrailerLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            noTrailerLabel.heightAnchor.constraint(equalToConstant: 200),
-            noTrailerLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
-        ])
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalTo(scrollView.snp.width)
+        }
+        
+        posterImageView.snp.makeConstraints { make in
+            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(16)
+            make.leading.equalToSuperview().offset(16)
+            make.width.equalTo(100)
+            make.height.equalTo(150)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(16)
+            make.leading.equalTo(posterImageView.snp.trailing).offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+        
+        overviewLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+            make.leading.equalTo(posterImageView.snp.trailing).offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+        
+        genreLabel.snp.makeConstraints { make in
+            make.top.equalTo(overviewLabel.snp.bottom).offset(16)
+            make.leading.equalTo(posterImageView.snp.trailing).offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+        
+        yearLabel.snp.makeConstraints { make in
+            make.top.equalTo(genreLabel.snp.bottom).offset(16)
+            make.leading.equalTo(posterImageView.snp.trailing).offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+        
+        ratingLabel.snp.makeConstraints { make in
+            make.top.equalTo(yearLabel.snp.bottom).offset(16)
+            make.leading.equalTo(posterImageView.snp.trailing).offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+        
+        playerView.snp.makeConstraints { make in
+            make.top.equalTo(ratingLabel.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(200)
+        }
+        
+        noTrailerLabel.snp.makeConstraints { make in
+            make.top.equalTo(ratingLabel.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(200)
+            make.bottom.equalToSuperview().offset(-16)
+        }
         
         titleLabel.numberOfLines = 0
         titleLabel.textColor = .white
