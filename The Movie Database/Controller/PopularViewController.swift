@@ -17,7 +17,6 @@ class PopularViewController: UIViewController, WKNavigationDelegate {
     private var isShowingMovies = true
     private var currentPage = 1
     private var isLoading = false
-
     
     //MARK: - Life Cycle
     override func loadView() {
@@ -135,8 +134,8 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(detailVC, animated: true)
         }
     }
-
-//MARK: - Pagination upon reaching the end of the list
+    
+    //MARK: - Pagination upon reaching the end of the list
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height

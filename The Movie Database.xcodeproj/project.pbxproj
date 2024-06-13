@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1130FC592BFD4197003582AB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1130FC582BFD4197003582AB /* Kingfisher */; };
 		116BD0482C0A0E2400162218 /* Pods_The_Movie_Database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 316F7044896C33110182C3B0 /* Pods_The_Movie_Database.framework */; };
-		116BD04B2C0A10F900162218 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 116BD04A2C0A10F900162218 /* Kingfisher */; };
 		1186C9D72BFF96D100747FBE /* TVSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1186C9D62BFF96D100747FBE /* TVSeries.swift */; };
+		118A98982C1B582800CDF754 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 118A98972C1B582800CDF754 /* Kingfisher */; };
 		118BFDF32BFE7987006DD67C /* WatchLaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118BFDF22BFE7987006DD67C /* WatchLaterManager.swift */; };
 		118BFDF52BFE79EB006DD67C /* SeriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118BFDF42BFE79EB006DD67C /* SeriesCell.swift */; };
 		118BFDF72BFE7AD0006DD67C /* SeriesDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118BFDF62BFE7AD0006DD67C /* SeriesDetailController.swift */; };
@@ -65,9 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1130FC592BFD4197003582AB /* Kingfisher in Frameworks */,
+				118A98982C1B582800CDF754 /* Kingfisher in Frameworks */,
 				116BD0482C0A0E2400162218 /* Pods_The_Movie_Database.framework in Frameworks */,
-				116BD04B2C0A10F900162218 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,8 +203,7 @@
 			);
 			name = "The Movie Database";
 			packageProductDependencies = (
-				1130FC582BFD4197003582AB /* Kingfisher */,
-				116BD04A2C0A10F900162218 /* Kingfisher */,
+				118A98972C1B582800CDF754 /* Kingfisher */,
 			);
 			productName = "The Movie Database";
 			productReference = 116733ED2C00FA4700D80437 /* The Movie Database.app */;
@@ -237,7 +234,7 @@
 			);
 			mainGroup = 11DE77F22BF7FD9000F6CDF5;
 			packageReferences = (
-				1130FC572BFD4197003582AB /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				118A98962C1B582800CDF754 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 11DE77F22BF7FD9000F6CDF5;
 			projectDirPath = "";
@@ -553,25 +550,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1130FC572BFD4197003582AB /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		118A98962C1B582800CDF754 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.11.0;
+				minimumVersion = 7.12.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1130FC582BFD4197003582AB /* Kingfisher */ = {
+		118A98972C1B582800CDF754 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1130FC572BFD4197003582AB /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		116BD04A2C0A10F900162218 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1130FC572BFD4197003582AB /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 118A98962C1B582800CDF754 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
